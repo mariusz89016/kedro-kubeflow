@@ -48,7 +48,7 @@ jobs:
           CC_TOKEN: ${{ secrets.CODE_CLIMATE}}
     
     - name: Report coverage
-      if: steps.checksecrets.outputs.hassecrets
+      if: ${{ github.repository == 'getindata/kedro-kubeflow' }}
       uses: paambaati/codeclimate-action@v2.7.5
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE }}
