@@ -12,9 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.event.pull_request.head.ref || '' }}
-        repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
     
     - name: Setup python
       uses: actions/setup-python@v2.2.1
@@ -51,7 +48,7 @@ jobs:
           CC_TOKEN: ${{ secrets.CODE_CLIMATE}}
     
     - name: Report coverage
-      if: ${{ github.repository == 'getindata/kedro-kubeflow' }}
+      if: github.event.pull_request_head.ref == 'getindata/kedro-kubeflow'
       uses: paambaati/codeclimate-action@v2.7.5
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE }}
