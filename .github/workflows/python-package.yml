@@ -15,7 +15,8 @@ jobs:
     
     - name: Echo variables
       run: |
-        echo ${{ github.full_name }}
+        echo ${{ github.push.repository.full_name }}
+        echo ${{ github.repository }}
         echo ${{ github.event.pull_request.head.repo.full_name }}
         echo ${{ github.event.pull_request.head.ref }}
     # - name: Setup python
