@@ -15,7 +15,8 @@ jobs:
     
     - name: Echo variables
       run: |
-        echo ${{ github.event.pull_request }}
+        echo ${{ github.event.pull_request.full_name }}
+        echo ${{ github.event.pull_request.head.ref }}
     # - name: Setup python
     #   uses: actions/setup-python@v2.2.1
     #   with:
