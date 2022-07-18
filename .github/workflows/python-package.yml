@@ -13,12 +13,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - name: Echo variables
-      run: |
-        echo ${{ github.push.repository.full_name }}
-        echo ${{ github.repository }}
-        echo ${{ github.event.pull_request.head.repo.full_name }}
-        echo ${{ github.event.pull_request.head.ref }}
     # - name: Setup python
     #   uses: actions/setup-python@v2.2.1
     #   with:
@@ -42,7 +36,7 @@ jobs:
     #     tox -v -e py38
     
     - name: Report coverage
-      if: github.event.pull_request.head.repo.full_name == 'getindata/kedro-kubeflow'
+      if: (github.event.pull_request.head.repo.full_name || github.push.repository.full_name) == github.repository
       uses: paambaati/codeclimate-action@v2.7.5
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE }}
